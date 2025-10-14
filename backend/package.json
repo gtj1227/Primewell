@@ -1,0 +1,30 @@
+{
+  "name": "cs490-groupproject",
+  "version": "1.0.0",
+  "description": "Spring 2025 CS490 Group 3 Project",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "^3.2.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aiden-Barrera/CS490-GroupProject.git"
+  },
+  "keywords": [],
+  "author": "Vincent Colella and Fardeen Iqbal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aiden-Barrera/CS490-GroupProject/issues"
+  },
+  "homepage": "https://github.com/Aiden-Barrera/CS490-GroupProject#readme"
+}
