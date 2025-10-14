@@ -1,0 +1,10 @@
+.one-week-calendar {
+  display: flex;
+}
+
+.calendar-day {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  width: 100px; /* Adjust as needed */
+}
