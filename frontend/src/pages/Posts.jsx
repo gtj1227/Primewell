@@ -48,7 +48,7 @@ const Posts = () => {
                 }}>
                     <h1 className="title" style={{ color: "#373b41", marginBottom: "10px", marginTop: 0, fontFamily: "Poppins"}} >Exercise Posts</h1>
                     <Input placeholder="Search by Exercise Name" style={{fontSize: "24px", height: "50px", width: "50%", marginTop: "40px"}}
-                        prefix={<img src="/searchIcon.svg" alt="Icon" style={{width: "24px", marginRight: "5px"}}/>} onChange={handleSearch}
+                        prefix={<img src="/public/searchIcon.svg" alt="Icon" style={{width: "24px", marginRight: "5px"}}/>} onChange={handleSearch}
                     />
                     {/* Section for Writing a new review */}
                     <Button type="primary" style={{
