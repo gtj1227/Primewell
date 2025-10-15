@@ -13,7 +13,7 @@ const SideBarMenu = ({info, surveyCompleted}) => {
             patient_id: info?.patient_id,
         }
         
-        const res = await axios.post("/patientsurvey/date", body)
+        const res = await axios.post("http://localhost:3000/patientsurvey/date", body)
         if (res.data === false){
             setSurveyNeeded(true)
         } else {

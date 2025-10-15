@@ -1,4 +1,4 @@
-import {Button, Flex, Alert} from "antd"
+import {Button, Flex} from "antd"
 import {DownOutlined} from "@ant-design/icons"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -8,18 +8,12 @@ const Request = ({userInfo}) => {
     const [doctorInfo, setDoctorInfo] = useState([])
     const [patientDoctor, setPatientDoctor] = useState(null)
     const [otherDoctors, setOtherDoctors] = useState([])
-    const [error, setError] = useState(null)
 
     const fetchDoctorInfo = async () => {
-        setError(null)
         try {
-            const res = await axios.get("/doctor/listAll")
-            let allDoctors = res.data
-            if (!Array.isArray(allDoctors)) {
-                setError("Backend did not return a doctor list array.");
-                allDoctors = [];
-            }
-            const res2 = await axios.get(`/patientDoc/${userInfo.patient_id}`)
+            const res = await axios.get("http://localhost:3000/doctor/listAll")
+            const allDoctors = res.data
+            const res2 = await axios.get(`http://localhost:3000/patientDoc/${userInfo.patient_id}`)
             if (res2) {
                 const assignedDoctor = res2.data
                 setPatientDoctor(assignedDoctor)
@@ -30,9 +24,6 @@ const Request = ({userInfo}) => {
                 setOtherDoctors(allDoctors)
             }
         } catch (err) {
-            setError(err?.response?.status === 404
-                ? `404 Not Found: ${err.config?.url}`
-                : `Error Fetching Doctor: ${err.message}`)
             console.log("Error Fetching Doctor: ", err)
         }
     }
@@ -50,9 +41,6 @@ const Request = ({userInfo}) => {
             overflow: "auto",
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)"
         }}>
-            {error && (
-                <Alert type="error" message={error} style={{marginBottom: 20}} />
-            )}
             {/* Section for Current Doctor */}
             {patientDoctor && (
                 <>

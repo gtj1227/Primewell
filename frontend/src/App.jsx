@@ -53,7 +53,7 @@ function App() {
 
   const fetchUserInfo = async () => {
     if (userInfo.patient_id){
-      const res = await axios.get(`/fetchPatient/${userInfo.patient_id}`)
+      const res = await axios.get(`http://localhost:3000/fetchPatient/${userInfo.patient_id}`)
       const enrichedData = {
         ...res.data,
         userType: "Patient",
@@ -64,7 +64,7 @@ function App() {
       sessionStorage.setItem("userInfo", JSON.stringify(enrichedData));
 
     } else if (userInfo.doctor_id) {
-      const res = await axios.get(`/fetchDoctor/${userInfo.doctor_id}`)
+      const res = await axios.get(`http://localhost:3000/fetchDoctor/${userInfo.doctor_id}`)
       const enrichedData = {
         ...res.data,
         userType: "Doctor",
@@ -75,7 +75,7 @@ function App() {
       
       sessionStorage.setItem("userInfo", JSON.stringify(enrichedData));
     } else if (userInfo.pharm_id) {
-      const res = await axios.get(`/fetchPharmacy/${userInfo.pharm_id}`)
+      const res = await axios.get(`http://localhost:3000/fetchPharmacy/${userInfo.pharm_id}`)
       const enrichedData = {
         ...res.data,
         userType: "Pharmacist",

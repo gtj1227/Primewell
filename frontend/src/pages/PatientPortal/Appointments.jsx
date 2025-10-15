@@ -18,7 +18,7 @@ const Appointments = ({userInfo}) => {
         setLoading(true);
         setError(null);
         try {
-            const res = await axios.get(`/appointment/patient/${userInfo.patient_id}`)
+            const res = await axios.get(`http://localhost:3000/appointment/patient/${userInfo.patient_id}`)
             console.log(res.data)
             setAppointmentInfo(Array.isArray(res.data) ? res.data : [])
         } catch (err) {

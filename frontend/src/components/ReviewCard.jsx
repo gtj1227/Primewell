@@ -44,7 +44,7 @@ const RequestCard = (props) => {
         console.log("Selected Date: ", value)
     }
 
-    const fetchDaySchudule = async () => {
+    const fetchDaySchedule = async () => {
         const body = {
             doc_id: props.info.doctor_id,
             day: selectDate.format("dddd"),
@@ -56,7 +56,7 @@ const RequestCard = (props) => {
     }
 
     useEffect(()=>{
-        fetchDaySchudule()
+        fetchDaySchedule()
     }, [selectDate])
 
     useEffect(() => {

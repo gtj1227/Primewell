@@ -12,7 +12,7 @@ const PatientPrescription = ({ userInfo }) => {
   useEffect(() => {
     const fetchPrescriptions = async () => {
       try {
-        const res = await axios.get(`/fetchPrescriptionAccepted/${userInfo?.patient_id}`);
+        const res = await axios.get(`http://localhost:3000/fetchPrescriptionAccepted/${userInfo?.patient_id}`);
         console.log("Patient Prescription: ", res.data)
         setPrescriptionData(res.data);
       } catch (error) {

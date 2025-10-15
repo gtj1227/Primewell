@@ -672,9 +672,13 @@ export async function LogAttempt(UserEmail, Success_Status){
 
 export async function genereateAudit(User_ID, User_type, Event_Type, Event_Details){
     try {
+    // Ensure User_ID is a number or null to avoid inserting the string 'undefined'
+    const uid = (User_ID === undefined || User_ID === null) ? null : Number(User_ID)
+    const safeUid = Number.isNaN(uid) ? null : uid
+
     const [resultGenerateAudit] = await pool.query(`
         INSERT INTO AuditLog (UserID, UserType, Event_Type, Event_Details) VALUES (?, ?, ?, ?);`
-    , [User_ID, User_type, Event_Type, Event_Details])
+    , [safeUid, User_type, Event_Type, Event_Details])
     return resultGenerateAudit
     }
     catch (err) {

@@ -306,9 +306,16 @@ app.get("/pharmInfo/:id", async (req, res) => {
  */  
 // MAKE THIS A POST REQUEST BECAUSE IT IS SENSITIVE - FI
 app.get("/patientDoc/:id", async (req, res) => {
-    const rows = await getPatientDoc(req.params.id)
+    const id = Number(req.params.id)
+    if (Number.isNaN(id)) {
+        res.status(400).json({ error: 'Invalid patient id' })
+        return
+    }
+
+    const rows = await getPatientDoc(id)
     const event_Details = 'retrieval of patient\'s doctor'
-    const audit = await genereateAudit(req.params.id, 'Patient', 'GET', event_Details) 
+    // generate audit with numeric id
+    const audit = await genereateAudit(id, 'Patient', 'GET', event_Details)
     res.send(rows)
 })
 
@@ -2801,6 +2808,7 @@ app.patch('/regimentClear/:id', async (req, res) => {
 app.patch('/rejectRequest', async(req, res) => {
     const {Patient_ID, Doctor_ID, Appt_Date, Appt_Time} = req.body
     if (!Patient_ID || !Doctor_ID || !Appt_Date || !Appt_Time) {
+        console.log("Missing info: ", req.body)
         return res.status(400).json({ error: "Missing required information" });
     }
 

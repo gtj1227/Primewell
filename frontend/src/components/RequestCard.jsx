@@ -51,7 +51,7 @@ const RequestCard = (props) => {
             date: selectDate.format("YYYY-MM-DD")
         }
         // const res = await axios.post("http://localhost:3000/getDoctorSchedule", body)
-        const res = await axios.post("/getDoctorSchedule", body)
+        const res = await axios.post("http://localhost:3000/getDoctorSchedule", body)
         setDaySchedule(res.data)
     }
 
@@ -92,7 +92,7 @@ const RequestCard = (props) => {
 
         try {
             // const res = await axios.post("http://localhost:3000/request", body)
-            const res = await axios.post("/request", body)
+            const res = await axios.post("http://localhost:3000/request", body)
             api.open({
                 message: 'Request Sent!',
                 description:
@@ -128,7 +128,7 @@ const RequestCard = (props) => {
         }
         try {
             // const res = await axios.patch(`http://localhost:3000/patientDropDoctor/removeDoc`, body)
-            const res = await axios.patch(`/patientDropDoctor/removeDoc`, body)
+            const res = await axios.patch(`http://localhost:3000/patientDropDoctor/removeDoc`, body)
             api.open({
                 message: "Doctor Dropped!",
                 description: 

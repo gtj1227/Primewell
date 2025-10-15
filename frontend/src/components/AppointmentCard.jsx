@@ -17,7 +17,7 @@ const AppointmentCard = ({apptInfo}) => {
             Appointment_ID: apptInfo.Appointment_ID
         }
         // const res1 = await axios.post("http://localhost:3000/fetchApptEndStatus", body)
-        const res1 = await axios.post("/fetchApptEndStatus", body)
+        const res1 = await axios.post("http://localhost:3000/fetchApptEndStatus", body)
         setAppt_end(res1.data.Appt_End)
     }
 
@@ -32,7 +32,7 @@ const AppointmentCard = ({apptInfo}) => {
             Appointment_ID: apptInfo.Appointment_ID
         }
         // const res = await axios.post("http://localhost:3000/fetchApptStartStatus", body)
-        const res = await axios.post("/fetchApptStartStatus", body)
+        const res = await axios.post("http://localhost:3000/fetchApptStartStatus", body)
         console.log("Start:", res.data)        
         if (res.data.Appt_Start === 1){
             navigate("/PatientPortal/ApptChannel", {
