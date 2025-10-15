@@ -38,7 +38,7 @@ import { sendPrescription, consumePrescriptions, preCreatePharmacyQueue } from '
 import cors from 'cors'
 import dotenv from 'dotenv'
 import swaggerUi from 'swagger-ui-express'
-import swaggerSpec from './swaggerSpec.js'
+import swaggerSpec from './swagger.js'
 import http from 'http'
 import { Server } from 'socket.io'
 dotenv.config()
@@ -325,8 +325,13 @@ app.get("/patientDoc/:id", async (req, res) => {
  *         description: Internal server error
  */  
 app.get("/doctor/listAll", async (req, res) => {
-    const rows = await getAllDoctors()
-    res.send(rows)
+    try {
+        const rows = await getAllDoctors();
+        console.log("/doctor/listAll result:", rows);
+        res.send(Array.isArray(rows) ? rows : []);
+    } catch (err) {
+        res.status(500).json({ error: err.message || "Internal server error" });
+    }
 })
 
 /**
@@ -2034,7 +2039,7 @@ app.post('/sendPrescription', async (req, res) => {
         // const newPrescription = await createPerscription(Patient_ID, Doctor_ID, Pill_ID, Quantity, Pharm_ID)
         // console.log(newPrescription)
         // const event_Details = 'Created new Prescription'
-        // const audit = await genereateAudit(Doctor_ID, 'Doctor', 'POST', event_Details)
+        // const audit = await genereateAudit(newPrescription['Prescription_ID'], 'Doctor', 'POST', event_Details)
 
         // Then send to the appropriate pharmacy queue
         const prescription = {
@@ -2115,7 +2120,7 @@ app.post("/reviews", async (req, res) => {
  *       500:
  *         description: Internal server error
  */
-app.post("/patientsurvey", apiKeyMiddleware, async (req, res) => {
+app.post("/patientsurvey", async (req, res) => {
     const {Patient_ID, Weight, Caloric_Intake, Water_Intake, Mood} = req.body
     if (!Patient_ID | !Weight | !Caloric_Intake | !Water_Intake| !Mood) {
         return res.status(400).json({ error: "Missing required information" });

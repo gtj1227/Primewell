@@ -13,7 +13,7 @@ const SideBarMenu = ({info, surveyCompleted}) => {
             patient_id: info?.patient_id,
         }
         
-        const res = await axios.post("http://localhost:3000/patientsurvey/date", body)
+        const res = await axios.post("/patientsurvey/date", body)
         if (res.data === false){
             setSurveyNeeded(true)
         } else {
@@ -44,7 +44,7 @@ const SideBarMenu = ({info, surveyCompleted}) => {
             <Flex vertical gap="3px" style={{
                 margin: "15px 15px 10px 15px",
                 paddingRight: "20px",
-                borderRight: "2px solid #666666"
+                borderRight: "2px solid #333333"
             }}>
                 <Button style={{
                     width: "25px",
