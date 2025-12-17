@@ -11,7 +11,7 @@ const Regiment = ({ info }) => {
         console.log(info)
         const fetchRegimentInfo = async () => {
             try {
-                const res = await axios.get(`/regiment/${info.patient_id}`);
+                const res = await axios.get(`http://localhost:3000/regiment/${info.patient_id}`);
 
                 const regiment = res.data[0]?.Regiment;
 

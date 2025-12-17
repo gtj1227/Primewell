@@ -5,6 +5,7 @@ dotenv.config()
 //make a file called .env if you dont and write each process.env. as ENTRY="value", and place the file at the root - VC
 const pool = mysql.createPool({
     host:     process.env.MYSQLHOST,
+    port:     process.env.MYSQLPORT,
     user:     process.env.MYSQLUSER,
     password: process.env.MYSQL_ROOT_PASSWORD,
     database: process.env.MYSQL_DATABASE,
@@ -672,13 +673,9 @@ export async function LogAttempt(UserEmail, Success_Status){
 
 export async function genereateAudit(User_ID, User_type, Event_Type, Event_Details){
     try {
-    // Ensure User_ID is a number or null to avoid inserting the string 'undefined'
-    const uid = (User_ID === undefined || User_ID === null) ? null : Number(User_ID)
-    const safeUid = Number.isNaN(uid) ? null : uid
-
     const [resultGenerateAudit] = await pool.query(`
         INSERT INTO AuditLog (UserID, UserType, Event_Type, Event_Details) VALUES (?, ?, ?, ?);`
-    , [safeUid, User_type, Event_Type, Event_Details])
+    , [User_ID, User_type, Event_Type, Event_Details])
     return resultGenerateAudit
     }
     catch (err) {
@@ -1533,4 +1530,3 @@ export async function deleteForumPost(id) {
         throw err
     }
 }
-

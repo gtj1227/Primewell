@@ -16,7 +16,6 @@ const AppointmentCard = ({apptInfo}) => {
         const body = {
             Appointment_ID: apptInfo.Appointment_ID
         }
-        // const res1 = await axios.post("http://localhost:3000/fetchApptEndStatus", body)
         const res1 = await axios.post("http://localhost:3000/fetchApptEndStatus", body)
         setAppt_end(res1.data.Appt_End)
     }
@@ -31,7 +30,6 @@ const AppointmentCard = ({apptInfo}) => {
         const body = {
             Appointment_ID: apptInfo.Appointment_ID
         }
-        // const res = await axios.post("http://localhost:3000/fetchApptStartStatus", body)
         const res = await axios.post("http://localhost:3000/fetchApptStartStatus", body)
         console.log("Start:", res.data)        
         if (res.data.Appt_Start === 1){
@@ -62,13 +60,14 @@ const AppointmentCard = ({apptInfo}) => {
         }}>
             {/* Section for Displaying Doctor Info and Availablilty */}
             <Flex align="center" justify="space-between">
-                <Flex vertical gap="15px">
-                    <Flex gap="10px">
-                        <img src="/calender.svg" alt="Icon" style={{ 
-                            width: "52px", 
+                <Flex vertical gap="10px" contentst="center">
+                    <Flex gap="20px">
+                        <img src="/calendar-white-icon.svg" alt="Icon" style={{ 
+                            width: "38px", 
                             height: "auto", 
                             borderRadius: "10px",
-                            flexShrink: 0
+                            flexShrink: 0,
+                            marginLeft: "5px"
                         }} />
                         <h2 style={{color: "#ffffff", fontSize: "32px", borderRight: "3px solid #ffffff", paddingRight: "18px", margin: 0}}>{date?.format('MMM D, YYYY')}</h2>
                         <h2 style={{color: "#ffffff", fontSize: "32px", paddingLeft: "9px", margin: 0}}>{`${apptInfo?.Appt_Time}`}</h2>
