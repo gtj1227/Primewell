@@ -3,6 +3,8 @@
 ![primewell logo](https://github.com/gtj1227/Primewell/blob/main/frontend/prime.png "Primwell Logo")
 
 ## Setting up environment
+In whatever SQL tool you use (for me, I used MySQL Workbench), create a new database and add a table titled "primewell". Once the table is created, open a query tab and import the sql file "primewell_db_setup.sql". Run the sqp query and the database will be set up.  
+
 In one terminal, navigate to "frontend" folder of project. In a second terminal, navigate to "backend" folder of project. For the terminal with the frontend, run the command "npm run dev". For the terminal with the backend, run the command "npm run start". 
 ## Purpose  
 When patients go into a clinic, they often need to spend time with the receptionist to get all kinds of preliminary routines done before meeting with the doctor. Often times the patient will have to wait some time, anywhere between 10 - 30 minutes, to even start 
